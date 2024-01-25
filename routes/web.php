@@ -1,10 +1,15 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Redirect;
+use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/', [AuthenticatedSessionController::class, 'create']);
 
 Route::middleware([
     'auth:sanctum',
@@ -17,3 +22,6 @@ Route::middleware([
 
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
+
+// Route::get('/', [AuthenticatedSessionController::class, 'create']);
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');

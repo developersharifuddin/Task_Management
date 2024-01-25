@@ -16,20 +16,10 @@ class CheckAdmin
     public function handle(Request $request, Closure $next): Response
     {
 
-        // Check if the user is authenticated and has the role of "admin"
-        if (auth()->check() && auth()->user()->role === 'admin') {
-            return $next($request);
+        if (auth()->check() && (!auth()->user()->role === 'admin')) {
+            abort(403, 'Unauthorized action && You do not have permission to access this page.');
         }
-        // Redirect to home or any other route if the user is not an admin
-        return redirect()->route('home')->with('error', 'You do not have permission to access this resource.');
-
-
-
-
-
-        // if (auth()->check() && (!auth()->user()->role === 'admin')) {
-        //     abort(403, 'Unauthorized action && You do not have permission to access this page.');
-        // }
-        // return $next($request);
+        return $next($request);
+        // dd(auth()->user()->role);
     }
 }

@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\PurchaseController;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 
+Route::get('/', [AdminController::class, 'dashboard']);
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -31,9 +32,6 @@ Route::middleware([
     Route::get('/importcsv', [ImportCsv::class, 'index']);
     Route::post('/importcsvupload', [ImportCsv::class, 'upload_csv_file'])->name('uploadcsv');
 
-    Route::get('/order', [OrderShipedController::class, 'OrderList'])->name('order.list');
-    Route::post('/order/{orderId}', [OrderShipedController::class, 'sendOrderEmail'])->name('order.status');
-
     // Route::resource('/products', ItemInfoController::class);
     Route::resource('products', ProductController::class);
     Route::put('/purchase/{purchaseId}', [ProductController::class, 'purchaseProduct'])->name('purchase.purchase');
@@ -43,6 +41,3 @@ Route::middleware([
     // Logout route
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
-
-Route::get('process', [DataController::class, 'processLargeData'])->name('data-process-start');
-Route::get('/create-order', [NewOrderPlacedController::class, 'store']);

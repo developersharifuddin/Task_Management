@@ -66,10 +66,7 @@ class Category extends Model
         return url('categories/' . $this->slug);
     }
 
-    public function iteminfos()
-    {
-        return $this->hasMany(ItemInfo::class);
-    }
+
 
     public function parent()
     {
