@@ -67,11 +67,17 @@ product-list
 create-product
 ![Alt text](create-product-1.png)
 
+create-product mail:
+![Alt text](purchase-order.png)
+
 edit-product
 ![Alt text](edit-product-1.png)
 
 view-product
 ![Alt text](view-product-1.png)
+
+Purchase Order:
+![Alt text](purchase-product.png)
 
 upload csv-1
 ![Alt text](<upload csv-2.png>)
